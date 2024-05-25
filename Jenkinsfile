@@ -53,7 +53,7 @@ pipeline{
 
         stage("Scanning the SBOM file with Grype"){
             steps{
-                sh 'grype sbom: ./sbom.json'
+                sh 'grype sbom:./sbom.json'
                 
             }
             
