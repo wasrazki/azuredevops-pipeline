@@ -1,0 +1,20 @@
+
+
+<form [formGroup]="paymentForm" (ngSubmit)="submitPaymentForm()">
+  <div>
+    <label for="cardNumber">Numéro de carte :</label>
+    <input type="text" id="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456" required>
+  </div>
+
+  <div>
+    <label for="expiryDate">Date d'expiration :</label>
+    <input type="text" id="expiryDate" name="expiryDate" placeholder="MM/YYYY" required>
+  </div>
+
+
+  <button type="submit" (click)="showInvoice = true">Payer et Imprimer facture</button>
+  
+</form>
+<app-facture *ngIf="showInvoice"></app-facture>
+
+  

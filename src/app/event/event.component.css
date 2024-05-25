@@ -1,0 +1,49 @@
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 70vh; /* Adjust the height as needed */
+        background-color:#f8e6d9;
+        padding: 20px;
+        width: 100%;
+    }
+ 
+    .custom-text-style {
+      font-family: 'Arial, Helvetica, sans-serif';
+      font-size: 5rem; /* Adjust the font size as needed */
+      font-weight: bold;
+      color: #dc3545; /* Adjust the text color as needed */
+      text-shadow: 2px 2px 4px rgba(240, 148, 162, 0.732); /* Text shadow for an ombre effect */
+      margin-top: 150px; /* Adjust the top margin as needed */
+      text-align: center; /* Center the text horizontally */
+    }
+  
+  .line {
+    display: block;
+    line-height: 1.5;
+    white-space: nowrap;
+  }
+  
+  .ombre-text {
+    text-shadow: 2px 2px 4px rgba(240, 148, 162, 0.732);
+  }
+
+  
+
+  .custom-button {
+    
+    margin-top: -90px; /* Ajustez la marge supérieure selon vos besoins */
+    font-size: 1.4rem; /* Ajustez la taille de la police selon vos besoins */
+    font-weight: bold;
+    color: #fff; /* Couleur du texte du bouton */
+    background-color:#43222e ; /* Couleur de fond du bouton */
+    border: none;
+    padding: px 20px; /* Ajustez le rembourrage selon vos besoins */
+    cursor: pointer;
+
+  }
+  
+  

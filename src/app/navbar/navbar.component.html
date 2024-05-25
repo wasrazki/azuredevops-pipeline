@@ -1,0 +1,20 @@
+<nav *ngIf="navbarService.getShowNavbar()" class="navbar" [ngStyle]="{'background': 'linear-gradient(to right, #f8e6d9, #928577)'}">
+
+ 
+  <div class="logo">
+     <img src="assets/logo.png" alt="Logo" (click)="home()">
+   </div>
+
+  
+
+   <form class="d-flex" role="search" (ngSubmit)="searchEvents(searchTerm)">
+     <input class="form-control me-2" [(ngModel)] ="searchTerm"  [ngModelOptions]="{standalone: true}" type="search" placeholder="Rechercher" aria-label="Search">
+     <button class="btn btn-outline-success"  type="submit" (click)="searchEvents(searchTerm)" >Rechercher</button>
+    
+   </form>
+
+   <div class="login-button">
+    <button (click)="onLoginLogoutClick()" *ngIf="!isLoggedIn"  class="btn btn-outline-light"> {{ isLoggedIn ? 'Deconnexion' : 'Connexion' }} </button>
+   </div>
+   
+ </nav>

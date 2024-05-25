@@ -1,0 +1,63 @@
+
+.card {
+    border: 3px solid #000; 
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 0;
+
+    
+  }
+  
+  .card-body {
+    padding: 1.5rem;
+    border-radius: 10px;
+    background-color:#fcf8f5;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: auto;
+  }
+  
+  .list-unstyled {
+    list-style: none;
+    padding: 0;
+  }
+  
+ 
+  
+  
+  .my-5 {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+  }
+  
+  .text-black {
+    color: #000; 
+  }
+  
+  .text-muted {
+    color: #da8fa1; 
+  }
+  
+  .hr-black {
+    border: 2px solid #000; 
+  }
+  
+  .float-end {
+    float: right;
+  }
+  
+
+  .text-center {
+    text-align: center;
+  }
+  
+ 
+  .text-info {
+    color: #050505;
+  }
+  
+
+  

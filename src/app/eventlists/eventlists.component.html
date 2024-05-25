@@ -1,0 +1,20 @@
+<body>
+    <div class="main-container">
+      
+      <div class="cards">
+        <div *ngFor="let event of events" class="card card-1">
+          <div class="card__icon"><i class="fas fa-bolt"></i></div>
+          <p class="card__exit"><i class="fas fa-times"></i></p>
+          <h2 class="card__title">{{ event.titre }} {{event.idEvent}}</h2>
+          <p class="card__apply">
+            <!-- Bind click event to the navigateToEventDetails method -->
+          <a class="card__link" (click)="reserver(event.idEvent)" style="margin-right: 20px;">Reserver <i class="fas fa-arrow-right"></i></a>
+          <!-- Use routerLink to handle navigation to eventdetails -->
+          <a class="card__link" [routerLink]="['/eventdetails', event.idEvent]">Details <i class="fas fa-arrow-right"></i></a>
+          </p>  
+        </div>
+      </div>
+    
+    </div>
+    
+    </body>

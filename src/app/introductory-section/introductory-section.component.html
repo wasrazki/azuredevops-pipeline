@@ -1,0 +1,47 @@
+
+<div class="container">
+    <div class="phrase-introductive">
+      <div class="line ombre-text">
+        <span class="typed-text">Réservez, créez, vibrez</span>
+      </div>
+      <div class="line ombre-text">Votre événement exceptionnel commence maintenant</div>
+    </div>
+
+    <button class="bouton-explore" (click)="scrollToCategories()">Explorez nos catégories</button>
+
+</div>
+
+<section id="categories" class="categories">
+  <!-- Première ligne de catégories -->
+  <div class="categorie categorie-concert" (click)="navigateToCategory('concert')">
+    Concert
+  </div>
+  <div class="categorie categorie-festival" (click)="navigateToCategory('festival')">
+    Festival
+  </div>
+  <div class="categorie categorie-afterwork" (click)="navigateToCategory('afterwork')">
+    Afterwork
+  </div>
+  <div class="categorie categorie-camping" (click)="navigateToCategory('camping')">
+    Camping
+  </div>
+</section>
+
+<section id="categories" class="categories">
+  <!-- Deuxième ligne de catégories -->
+  <div class="categorie categorie-randonnée" (click)="navigateToCategory('randonnée')">
+    Randonnée
+  </div>
+  <div class="categorie categorie-sport" (click)="navigateToCategory('sport')">
+    Sport
+  </div>
+  <div class="categorie categorie-bien-être" (click)="navigateToCategory('bien-être')">
+    Bien-être
+  </div>
+  <div class="categorie categorie-food" (click)="navigateToCategory('food')">
+    Food
+  </div>
+</section>
+
+
+

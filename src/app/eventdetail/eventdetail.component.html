@@ -1,0 +1,19 @@
+<body>
+    
+    <div class="card">
+        <h4 class="event-title" ><strong>{{ event?.titre }}</strong></h4>
+      
+        <p><strong>Une brève description de l'événement: {{ event?.description }}</strong></p>
+        <p><strong>Date de l'événement: </strong>{{ event?.date }}</p>
+        <p><strong>Emplacement: </strong>{{ event?.location }}</p>
+        <p><strong>Prix: </strong>{{ event?.prix }} TND</p>
+        <p><strong>Capacité: </strong>{{ event?.capacite }}</p>
+        <p><strong>Heure de début: </strong>{{ event?.heureDebut }}</p>
+        <p><strong>Heure de fin: </strong>{{ event?.heureFin }}</p>
+        <p><strong>Nombre de place restante: </strong>{{ event?.capacite - event?.numberofReservations }}</p>
+      
+        <button type="button-custom" class="btn btn-secondary" style="margin-right: 20px;" (click)="reserver()">Reserver</button>
+      </div>
+    
+     
+    </body>

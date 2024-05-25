@@ -1,0 +1,131 @@
+#footer {
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to right, #f8e6d9, #928577); 
+    color: #58364b;
+    padding: 20px;
+    transition: bottom 0.3s;
+    text-align: center;
+    font-size: 18px;
+  }
+  
+  .hidden {
+    bottom: -100px;
+  }
+  
+  .center-text {
+    text-align: center;
+  }
+  
+  .center {
+    display: flex;
+    justify-content: center;
+  }
+  
+  button {
+    padding: 20px;
+    font-size: 20px;
+    color: #fff;
+    background-color: #43222e;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 0 25px; /* Espacement entre les boutons */
+  }
+  
+  button:hover {
+    background-color: #7a4c63;
+  }
+  
+  .footer-left {
+    width: 40%;
+    display: inline-block;
+    vertical-align: top;
+  }
+  
+  .button-apple {
+    padding: 22px;
+    font-size: 15px;
+    color: #fff;
+    background-color: #43222e; /* Couleur de fond pour le bouton */
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 0 25px; /* Espacement entre les boutons */
+    background: url('apple.png') no-repeat left center; /* Ajoutez le chemin de votre logo */
+    background-size: 20px 20px; /* Ajustez la taille de votre logo selon vos préférences */
+  }
+  
+  .button-play-store {
+    padding: 22px;
+    font-size: 15px;
+    color: #fff;
+    background-color: #43222e; /* Couleur de fond pour le bouton */
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 0 18px; /* Espacement entre les boutons */
+    background: url('play_store.png') no-repeat left center; /* Ajoutez le chemin de votre logo */
+    background-size: 20px 20px; /* Ajustez la taille de votre logo selon vos préférences */
+  }
+  
+  .footer-center {
+    width: 30%;
+    display: inline-block;
+    vertical-align: top;
+  }
+  
+  .social-buttons button {
+    width: 32px;
+    height: 32px;
+    margin: 0 10px;
+    border: none;
+    cursor: pointer;
+    text-indent: -9999px; /* Masquer le texte */
+  }
+  
+  .button-instagram {
+    background: url('instagram.png') no-repeat left center;
+    background-size: 42px 42px;
+  }
+  
+  .button-facebook {
+    background: url('facebook.png') no-repeat left center;
+    background-size: 42px 42px;
+  }
+  
+  .button-twitter {
+    background: url('twitter.png') no-repeat left center;
+    background-size: 42px 42px;
+  }
+  
+  .footer-right {
+    width: 25%;
+    display: inline-block;
+    vertical-align: top;
+  }
+  
+  .contact-us {
+    margin-top: 10px; /* Espacement du haut */
+  }
+  
+  .contact-us p {
+    font-size: 16px;
+    margin: 8px 0; /* Espacement entre les paragraphes */
+  }
+  
+  .contact-us a {
+    color: #fff; /* Couleur du texte pour le lien e-mail */
+    text-decoration: none; /* Supprimer la soulignement du lien */
+    font-weight: bold;
+  }
+  
+  .contact-us a:hover {
+    text-decoration: underline; /* Soulignement lors du survol du lien */
+  }
+  .contain {
+    margin-bottom: 20px;
+    padding: 10px;
+  }

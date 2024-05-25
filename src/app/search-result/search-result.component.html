@@ -1,0 +1,29 @@
+<div   *ngIf="filteredEvents.length > 0" class="table-events" >
+    <div class="header">Search Results</div>
+  
+    <table cellspacing="0">
+      <tr>
+        <th>Events Name</th>
+        <th>Category</th>
+        <th>Location</th> 
+        <th>Start Hour</th>
+        <th>End Hour</th>
+        <th>Description</th>
+      </tr>
+  
+      <tr *ngFor="let event of filteredEvents">
+        <td>{{ event.Titre }}</td>
+        <td>{{ event.categorie }}</td>
+        <td>{{ event.location }}</td>
+        <td>{{ event.Heure_Debut }}</td>
+        <td>{{ event.Heure_Fin }}</td>
+        <td>{{ event.description }}</td>
+
+      </tr>
+    </table>
+  
+    
+  </div>
+<div *ngIf="filteredEvents.length === 0" class="no-results">
+    <p>Sorry, We couldn't find any results </p>
+</div>

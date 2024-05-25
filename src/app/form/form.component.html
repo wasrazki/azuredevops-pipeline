@@ -1,0 +1,113 @@
+<div class="form-container">
+  <div class="form-header">
+    
+    
+    <h3>Créez un événement exceptionnel</h3>
+  </div>
+
+  <div class="form">
+<form #eventForm="ngForm" (ngSubmit)="onSubmit()" class="container mt-4">
+    <div>
+      <label for="titre">Quel est le nom de votre événement ?</label>
+      <input type="text" id="titre" name="titre" [(ngModel)]="titre" #titreNgModel="ngModel" class="form-control" required>
+      <div *ngIf="titreNgModel.errors?.['required'] && (titreNgModel.dirty || titreNgModel.touched)" class="error-message">
+        Le titre ne peut être vide !
+      </div>
+    </div>
+  
+    <div>
+      <label for="description">Description:</label>
+      <div style="margin-top: 10px;">
+      <textarea id="description" name="description" [(ngModel)]="description" #descriptionNgModel="ngModel" class="form-control" required></textarea>
+      <div *ngIf="descriptionNgModel.errors?.['required'] && (descriptionNgModel.dirty || descriptionNgModel.touched)" class="error-message">
+        La description ne peut être vide !
+      </div>
+    </div>
+    </div>
+  
+      <div>
+        <label for="date">Date:</label>
+        <div style="margin-top: 10px;">
+          <input type="date" id="date" name="date" [(ngModel)]="date" #dateNgModel="ngModel" class="form-control" required>
+          <div *ngIf="dateNgModel.errors?.['required'] && (dateNgModel.dirty || dateNgModel.touched)" class="error-message">
+            La date ne peut être vide !
+          </div>
+        </div>
+      </div>
+  
+    <div>
+      <label for="capacite">Capacité:</label>
+      <div style="margin-top: 10px;">
+      <input type="number" id="capacite" name="capacite" [(ngModel)]="capacite" #capaciteNgModel="ngModel" class="form-control" (ngModelChange)="validateCapacite(capaciteNgModel)" >
+      <div *ngIf="capaciteNgModel.errors?.['capaciteInvalid']" class="error-message">
+        La capacité ne peut pas être 0 !
+      </div>
+      <div *ngIf="capaciteNgModel.errors?.['required']" class="error-message">
+        La capacité ne peut être vide !
+      </div>
+      </div>
+    </div>
+  
+    <div>
+      <label for="heureDebut">Heure de Début:</label>
+      <div style="margin-top: 10px;">
+      <input type="time" id="heureDebut" name="heureDebut" [(ngModel)]="heureDebut" class="form-control" required>
+      <div *ngIf="eventForm.controls['heureDebut'].hasError('required') && (eventForm.controls['heureDebut'].dirty || eventForm.controls['heureDebut'].touched)" class="error-message">
+        L'heure de début ne peut être vide !
+      </div>
+    </div>
+    </div>
+  
+    <div>
+      <label for="heureFin">Heure de Fin:</label>
+      <div style="margin-top: 10px;">
+      <input type="time" id="heureFin" name="heureFin" [(ngModel)]="heureFin" class="form-control" required>
+      <div *ngIf="eventForm.controls['heureFin'].hasError('required') && (eventForm.controls['heureFin'].dirty || eventForm.controls['heureFin'].touched)" class="error-message">
+        L'heure de fin ne peut être vide !
+      </div>
+      </div>
+    </div>
+  
+    <div>
+      
+      <label for="categorie">Catégorie:</label>
+      <div style="margin-top: 10px;">
+      <select id="categorie" name="categorie" [(ngModel)]="categorie" class="form-control" class="form-control" required>
+        <option value="concert">Concert</option>
+        <option value="Festival">Festival</option>
+        <option value="Food">Food</option>
+        <option value="Bien être">Bien être</option>
+        <option value="Afterwork">Afterwork</option>
+        <option value="Sport">Sport</option>
+        <option value="Randonnée">Randonnée</option>
+        <option value="Camping">Camping</option>
+      </select>
+      <div *ngIf="eventForm.controls['categorie'].hasError('required') && (eventForm.controls['categorie'].dirty || eventForm.controls['categorie'].touched)" class="error-message">
+        La catégorie ne peut être vide !
+      </div>
+    </div>
+    </div>
+  
+    <div>
+      <label for="location">Où se tiendra l'événement?</label>
+      <div style="margin-top: 10px;">
+      <input type="text" id="location" name="location" [(ngModel)]="location" class="form-control" required >
+      <div *ngIf="eventForm.controls['location'].hasError('required') && (eventForm.controls['location'].dirty || eventForm.controls['location'].touched)" class="error-message">
+        La localisation ne peut être vide !
+      </div>
+    </div>
+    </div>
+  
+    <div style="margin-top: 20px;" >
+      <button type="submit" [disabled]="!eventForm.valid" class="btn btn-outline-info">Soumettre</button>
+    </div>
+
+    <div *ngIf="showSuccessMessage" class="successMessage">
+      votre evenement a ete crée !!
+    </div>
+    
+  </form>
+
+</div>
+  
+</div>

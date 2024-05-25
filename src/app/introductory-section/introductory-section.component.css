@@ -1,0 +1,143 @@
+.phrase-introductive {
+    text-align: center; /* Aligner le texte au centre */
+    margin-top: 50px; /* Marge supérieure pour la placer plus bas */
+    color: #000000; /* Couleur du texte rose */
+    font-weight: bold; /* Police en gras */
+    font-size: 36px; /* Taille de la police */
+  }
+  
+  .line {
+    display: block; /* Assurez-vous que chaque ligne est sur une ligne différente */
+    line-height: 1.5; /* Espacement des lignes */
+    white-space: nowrap; /* Empêche le texte de revenir à la ligne */
+  }
+  
+  /* Style ombré pour le texte */
+  .ombre-text {
+    text-shadow: 2px 2px 4px rgba(240, 148, 162, 0.732); /* Ombrage avec une ombre légèrement floue en rose clair */
+}
+
+  
+  
+  /* Animation pour l'effet d'écriture et d'effacement lettre par lettre */
+  @keyframes typeAnimation {
+    0%, 50%, 100% {
+      width: 0; /* Texte effacé au début, à la moitié et à la fin de l'animation */
+    }
+  
+    25%, 75% {
+      width: 100%; /* Texte écrit au quart et aux trois quarts de l'animation */
+    }
+  }
+  
+  /* Appliquer l'animation à la première ligne seulement */
+  .line:first-child .typed-text {
+    overflow: hidden; /* Cacher le texte débordant de la boîte */
+    display: inline-block; /* Permet le positionnement vertical aligné au texte */
+    animation: typeAnimation 7s steps(40, end) infinite; /* Durée de l'animation (ajustez selon vos préférences) */
+  }
+
+  /* phrase-introductive.component.scss */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Ajustez la hauteur selon vos besoins */
+}
+
+.phrase-introductive {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.bouton-explore {
+    padding: 11px 21px;
+    font-size: 20px;
+    background-color: #43222e; /* Couleur de fond du bouton */
+    color: #fff; /* Couleur du texte du bouton (blanc dans cet exemple) */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+
+
+#categories {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.categorie {
+  flex: 1 0 calc(25% - 10px);
+  max-width: calc(25% - 20px);
+  height: 190px;
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 5px;
+  outline: none;
+}
+
+.categorie:hover {
+  background-color: #8f667a;
+}
+
+/* Nouvelles classes pour chaque catégorie avec une image de fond */
+.categorie-concert {
+  background-image: url('concert.png');
+  background-size: cover;
+}
+
+.categorie-festival {
+  background-image: url('festival.png');
+  background-size: cover;
+}
+
+.categorie-afterwork {
+  background-image: url('afterwork.png');
+  background-size: cover;
+}
+
+.categorie-camping {
+  background-image: url('camping.png');
+  background-size: cover;
+}
+
+.categorie-randonnée {
+  background-image: url('randonnée.png');
+  background-size: cover;
+}
+
+
+.categorie-sport {
+  background-image: url('sport.png');
+  background-size: cover;
+}
+
+.categorie-bien-être {
+  background-image: url('bien-être.png');
+  background-size: cover;
+}
+
+.categorie-food {
+  background-image: url('food.png');
+  background-size: cover;
+}
+
+.categorie:hover {
+  background-color: #8f667a;
+  font-size: 30px; /* Ajustez la taille de police souhaitée */
+}
+
+
+

@@ -1,0 +1,101 @@
+/* styles.css */
+
+/* Add margin to the form for better spacing */
+
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #154f88; /* Set your desired background color */
+}
+
+form {
+    margin-top: 40px;
+  }
+  
+  /* Style error messages with a red color */
+  .error-message {
+    color: red;
+  }
+  
+  /* Center the form on larger screens */
+  @media (min-width: 768px) {
+    form {
+      top: 50%;
+      max-width: 500px;
+      margin: 0 auto;
+      height: 700px;
+    }
+
+  }
+
+  .form-header {
+    text-align: center;
+    margin-bottom: 20px; /* Add space between the header and form */
+  }
+  
+  .form-header h3 {
+    margin: 0; /* Remove default margin of h3 */
+  }
+
+
+  .form-header h3 {
+
+  margin: 0; /* Remove default margin to prevent extra spacing */
+  font-size: 24px; /* Set your desired font size */
+  font-weight: bold; /* Optionally set font weight */
+  display: flex; /* Enable flex container */
+  align-items: center; /* Center items vertically within the flex container */
+  justify-content: center; /* Center items horizontally within the flex container */
+}
+
+.form-container {
+  height: 1010px;
+  max-width: 500px; /* Set your desired max width */
+  width: 100%;
+  margin: 0 auto;
+  padding:5px 20px 20px;
+  border-radius: 50px; /* Set your desired border radius */
+  background-color: #ffffff; /* Set your desired background color */
+  box-shadow: 0 0 10px rgba(232, 158, 214, 0.753); /* Optional: Add a subtle box shadow */
+  position: relative;
+}
+
+.form input,
+.form textarea,
+.form select {
+  font-weight: 300;
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.form label {
+  font-weight: 400;
+}
+
+.form button {
+  display: block;
+  margin: 0 auto;
+}
+
+.successMessage {
+    color: #035f03;
+    padding: 5px;
+    background-color: #65f365;
+    margin-top: 5px;
+    border-radius: 5px;
+}
+
+
+.header-image {
+  width: 50%; /* Adjust the width as needed */
+  max-height: 100px; /* Adjust the maximum height as needed */
+  object-fit: cover; /* Ensure the image covers the container without stretching */
+  margin-bottom: 30px; /* Add margin at the bottom for spacing */
+}
