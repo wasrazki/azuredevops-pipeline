@@ -25,7 +25,11 @@ pipeline{
         }*/ 
          stage("Generating SBOM Report and Uploading it to the Cloud"){
             steps{
-                sh 'syft packages dir:. --scope AllLayers | tee sbom-file | jq . > sbom.json'
+                sh 'syft packages dir:. --scope AllLayers -o json > sbom.json'
+                sh 'syft packages dir:. --scope AllLayers -o table > sbom-file'
+
+
+
                 script{
                     def report= readFile("sbom-file")
                     def htmlreport = """
