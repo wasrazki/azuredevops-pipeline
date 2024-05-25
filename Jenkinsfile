@@ -17,11 +17,6 @@ pipeline{
             
         }
 
-        stage('Install Dependencies') {
-            steps {
-                sh 'npm install'
-            }
-        }
 
         stage('Building the front') {
             steps {
@@ -30,7 +25,7 @@ pipeline{
         }
 
 
-        
+
     }
 
     
