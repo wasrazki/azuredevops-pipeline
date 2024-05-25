@@ -20,7 +20,7 @@ pipeline{
 
         stage('Building the front') {
             steps {
-                sh 'npm run build'
+                sh 'ng build'
             }
         }
 
