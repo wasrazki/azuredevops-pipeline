@@ -23,9 +23,9 @@ pipeline{
                 sh 'npm run build --omit=dev'
             }
         }*/ 
-         stage("Generating SBOM"){
+         stage("Generating SBOM Report and Uploading it to the Cloud"){
             steps{
-                sh 'syft packages dir:. --scope AllLayers  > sbom-file'
+                sh 'syft packages dir:. --scope AllLayers | tee sbom-file | jq . > sbom.json'
                 script{
                     def report= readFile("sbom-file")
                     def htmlreport = """
@@ -46,6 +46,14 @@ pipeline{
                 archiveArtifacts artifacts: 'target/sbom-file-report.html', allowEmptyArchive: true
             }
          }
+
+        stage("Scanning the SBOM file with Grype"){
+            steps{
+                sh 'grype sbom: ./sbom.json'
+                
+            }
+            
+        }
 
 
     }
