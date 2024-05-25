@@ -18,12 +18,16 @@ pipeline{
         }
 
 
-        stage('Building the front') {
+       /* stage('Building the front') {
             steps {
                 sh 'npm run build --omit=dev'
             }
-        }
-
+        }*/ 
+         stage("Generating SBOM"){
+            steps{
+                sh 'syft packages dir:. --scope AllLayers'
+            }
+         }
 
 
     }
