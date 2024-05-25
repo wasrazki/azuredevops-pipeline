@@ -12,7 +12,7 @@ pipeline{
 
         stage("Checkout from SCM"){
             steps{
-                git branch: "wassim-branch", credentialsId: 'vault-gitlab-access-token', url:'https://gitlab.com/pfa8681917/devsecops-pipeline/-/tree/main/front?ref_type=heads'
+                git branch: "wassim-branch", credentialsId: 'vault-gitlab-access-token', url:'https://gitlab.com/pfa8681917/devsecops-pipeline-front'
             }
             
         }
