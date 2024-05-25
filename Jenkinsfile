@@ -51,9 +51,27 @@ pipeline{
             }
          }
 
-        stage("Scanning the SBOM file with Grype"){
+        stage("Scanning the SBOM file with Grype and Uploading the Generated Report to the Cloud"){
             steps{
-                sh 'grype sbom:./sbom.json'
+                sh 'grype sbom:./sbom.json > grype-scanning'
+                script{
+                    def report= readFile("grype-scanning")
+                    def htmlreport = """
+                    <html> 
+                    <head> <title> Grype Scanning Report </title> </head> 
+                    <body>
+                        <h1> Grype Scanning Report: Build ${BUILD_NUMBER} </h1> 
+                        <pre> ${report}</pre>
+                    </body>
+                    </html>
+                    """
+                    writeFile file: 'target/grype-scanning-report.html', text: htmlreport
+                      
+
+                }
+
+                archiveArtifacts artifacts: 'target/grype-scanning-report.html', allowEmptyArchive: true
+
                 
             }
             
