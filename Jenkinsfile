@@ -40,9 +40,10 @@ pipeline{
                     </html>
                     
                     """
-                    writeFile file: 'target/sbom-file.html', text: htmlreport
+                    writeFile file: 'target/sbom-file-report.html', text: htmlreport
 
                 }
+                archiveArtifacts artifacts: 'target/sbom-file-report.html', allowEmptyArchive: true
             }
          }
 
