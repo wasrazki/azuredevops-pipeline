@@ -25,7 +25,24 @@ pipeline{
         }*/ 
          stage("Generating SBOM"){
             steps{
-                sh 'syft packages dir:. --scope AllLayers'
+                sh 'syft packages dir:. --scope AllLayers  > sbom-file'
+                script{
+                    def report= readFile("sbom-file")
+                    def htmlreport = """
+                    <html> 
+                    <head> 
+                        <title> SBOM File </title> 
+                    </head> 
+                    <body>
+                         <h1> SBOM File from Build N°: ${BUILD_NUMBER} </h1>
+                         <pre> ${report} </pre> 
+                    </body> 
+                    </html>
+                    
+                    """
+                    writeFile file: 'target/sbom-file.html', text: htmlreport
+
+                }
             }
          }
 
