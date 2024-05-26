@@ -6,6 +6,7 @@ pipeline{
     environment{
         SONARQUBE_ACCESS_TOKEN = credentials("vault-sonarqube-access-token")
         SONARQUBE_URL = credentials("vault-sonarqube-url")
+        SBOM_REPORT_CLOUD_UPLOADING=credentials("SBOM-REPORT-CLOUD-UPLOADING")
     }
     stages{
         stage("Cleanup Worksapce"){
@@ -50,9 +51,12 @@ pipeline{
                     
                     """
                     writeFile file: 'target/sbom-file-report.html', text: htmlreport
+                    sh "azcopy copy 'target/sbom-file-report.html'  '${SBOM_REPORT_CLOUD_UPLOADING}'  "
 
                 }
                 archiveArtifacts artifacts: 'target/sbom-file-report.html', allowEmptyArchive: true
+
+
             }
          }
 
