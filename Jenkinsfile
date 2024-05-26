@@ -2,6 +2,11 @@ pipeline{
     agent{
         label "jenkins-agent"
     }
+
+    environment{
+        SONARQUBE_ACCESS_TOKEN = credentials("vault-sonarqube-access-token")
+        SONARQUBE_URL = credentials("vault-sonarqube-url")
+    }
     stages{
         stage("Cleanup Worksapce"){
             steps{
@@ -80,7 +85,19 @@ pipeline{
            steps{
                 script{
                     withSonarQubeEnv(installationName: 'sonarqube-scanner' , credentialsId: 'vault-sonarqube-access-token'){
-                        sh 'npm run sonar'
+                        sh """
+                            sonar-scanner \
+                            -Dsonar.projectKey=angular-scanning \
+                            -Dsonar.sources=src \
+                            -Dsonar.tests=src \
+                            -Dsonar.test.inclusions=**/*.spec.ts \
+                            -Dsonar.exclusions=**/node_modules/**,**/dist/** \
+                            -Dsonar.typescript.lcov.reportPaths=coverage/lcov.info \
+                            -Dsonar.host.url=${SONARQUBE_URL} \
+                            -Dsonar.login=${SONARQUBE_ACCESS_TOKEN}
+
+
+                        """
                     }
 
                 }
