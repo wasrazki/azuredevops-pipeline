@@ -76,6 +76,27 @@ pipeline{
             }
             
         }
+        stage("SAST with SonarQube"){
+           steps{
+                script{
+                    withSonarQubeEnv ("sonarqube-scanner"){
+                        sh "npm install -g sonar-scanner"
+                        sh """
+                           sonar-scanner \
+                                -Dsonar.projectKey=angular-scanning \
+                                -Dsonar.sources=src \
+                                -Dsonar.tests=src \
+                                -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info \
+                                -Dsonar.login= "vault-sonarqube-access-token"
+                        """
+                    }
+                }
+                
+            }
+        }
+
+
+
 
 
     }
