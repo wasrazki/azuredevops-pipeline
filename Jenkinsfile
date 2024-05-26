@@ -78,10 +78,11 @@ pipeline{
         }
         stage("SAST with SonarQube"){
            steps{
-                script{
-                    withSonarQubeEnv ("sonarqube-scanner"){
-                        sh "sonar-scanner -Dsonar.projectVersion=${BUILD_NUMBER}"
+                cript{
+                    withSonarQubeEnv(installationName: 'sonarqube-scanner' , credentialsId: 'vault-sonarqube-access-token'){
+                        sh 'npm run sonar'
                     }
+
                 }
                 
             }
