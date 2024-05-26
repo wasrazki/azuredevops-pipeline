@@ -7,6 +7,7 @@ pipeline{
         SONARQUBE_ACCESS_TOKEN = credentials("vault-sonarqube-access-token")
         SONARQUBE_URL = credentials("vault-sonarqube-url")
         SBOM_REPORT_CLOUD_UPLOADING=credentials("SBOM-REPORT-CLOUD-UPLOADING")
+        GRYPE_REPORT_CLOUD_UPLOADING= credentials("GRYPE-REPORT-CLOUD-UPLOADING")
     }
     stages{
         stage("Cleanup Worksapce"){
@@ -75,6 +76,7 @@ pipeline{
                     </html>
                     """
                     writeFile file: 'target/grype-scanning-report.html', text: htmlreport
+                    sh "azcopy copy 'target/grype-scanning-report.html'  '${GRYPE_REPORT_CLOUD_UPLOADING}'  "
                       
 
                 }
