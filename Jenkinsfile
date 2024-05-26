@@ -78,7 +78,7 @@ pipeline{
         }
         stage("SAST with SonarQube"){
            steps{
-                cript{
+                script{
                     withSonarQubeEnv(installationName: 'sonarqube-scanner' , credentialsId: 'vault-sonarqube-access-token'){
                         sh 'npm run sonar'
                     }
