@@ -8,6 +8,8 @@ pipeline{
         SONARQUBE_URL = credentials("vault-sonarqube-url")
         SBOM_REPORT_CLOUD_UPLOADING=credentials("SBOM-REPORT-CLOUD-UPLOADING")
         GRYPE_REPORT_CLOUD_UPLOADING= credentials("GRYPE-REPORT-CLOUD-UPLOADING")
+        TRIVY_REPORT_CLOUD_UPLOADING= credentials("TRIVY-REPORT-CLOUD-UPLOADING")
+
     }
     stages{
         stage("Cleanup Worksapce"){
@@ -108,6 +110,29 @@ pipeline{
 
                 }
                 
+            }
+        }
+
+         stage ("Trivy Scanning and Report Uploading to the cloud"){
+            steps{
+                sh 'trivy filesystem . > trivy-scan'
+                script{
+                    def report = readFile("trivy-scan")
+                    def htmlreport = """
+                    <html> 
+                    <head> <title> Trivy Scanning Report </title> </head> 
+                    <body>
+                        <h1> Trivy Scanning Report: Build ${BUILD_NUMBER}   </h1> 
+                        <pre> ${report}</pre>
+                    </body>
+                    </html>
+                    """
+                    writeFile file: 'target/trivy-scanning-report.html', text: htmlreport
+                    sh "azcopy copy 'target/trivy-scanning-report.html'   '${TRIVY_REPORT_CLOUD_UPLOADING}'  "
+                }
+
+                archiveArtifacts artifacts: 'target/trivy-scanning-report.html', allowEmptyArchive: true
+
             }
         }
 
