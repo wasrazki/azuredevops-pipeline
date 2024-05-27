@@ -27,11 +27,11 @@ pipeline{
         }
 
 
-       /* stage('Building the front') {
+        stage('Install Modules') {
             steps {
-                sh 'npm run build --omit=dev'
+                sh 'npm install --verbose -d'
             }
-        }*/ 
+        } 
          stage("Generating SBOM Report and Uploading it to the Cloud"){
             steps{
                 sh 'syft packages dir:. --scope AllLayers -o json > sbom.json'
