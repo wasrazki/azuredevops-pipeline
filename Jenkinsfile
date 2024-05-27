@@ -27,9 +27,10 @@ pipeline{
         }
 
 
-        stage('Install Modules') {
+        stage('Install Modules and Build the APP') {
             steps {
                 sh 'npm install --verbose -d'
+                sh 'npm run build --prod'
             }
         } 
          stage("Generating SBOM Report and Uploading it to the Cloud"){
