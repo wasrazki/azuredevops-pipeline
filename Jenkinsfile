@@ -27,11 +27,12 @@ pipeline{
         }
 
 
-        stage('Install Modules and Build the APP') {
+        stage('Install Modules') {
             steps {
                 sh 'npm install --verbose -d'            }
         } 
-         stage("Generating SBOM Report and Uploading it to the Cloud"){
+        
+        stage("Generating SBOM Report and Uploading it to the Cloud"){
             steps{
                 sh 'syft packages dir:. --scope AllLayers -o json > sbom.json'
                 sh 'syft packages dir:. --scope AllLayers -o table > sbom-file'
@@ -112,7 +113,7 @@ pipeline{
             }
         }
 
-         stage ("Trivy Scanning and Report Uploading to the cloud"){
+        stage ("Trivy Scanning and Report Uploading to the cloud"){
             steps{
                 sh 'trivy filesystem . > trivy-scan'
                 script{
