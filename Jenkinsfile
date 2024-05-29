@@ -15,6 +15,7 @@ pipeline{
         SBOM_REPORT_CLOUD_UPLOADING=credentials("SBOM-REPORT-CLOUD-UPLOADING")
         GRYPE_REPORT_CLOUD_UPLOADING= credentials("GRYPE-REPORT-CLOUD-UPLOADING")
         TRIVY_REPORT_CLOUD_UPLOADING= credentials("TRIVY-REPORT-CLOUD-UPLOADING")
+        COSIGN.KEY = credentials("vault-cosign-key")
 
     }
     stages{
@@ -144,7 +145,7 @@ pipeline{
             }
         }
 
-        stage ("Docker Build and Push"){
+        stage ("Docker Build, Sign and Push with Docker and COSIGN"){
             steps{
                 script{
 
@@ -152,10 +153,14 @@ pipeline{
                     docker_image = docker.build "${IMAGE_NAME}"
                     }
 
+
+
                     docker.withRegistry('', DOCKER_PASS){
                         docker_image.push("${IMAGE_TAG}")
                         docker_image.push('latest')
                     }
+
+                    sh" cosign sign --key ${COSIGN.KEY} ${IMAGE_NAME}:${IMAGE_TAG} "
 
                 }
                         
