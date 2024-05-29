@@ -162,8 +162,8 @@ pipeline{
                     }
 
                     sh"""
-                    echo '${COSIGN_KEY}' | cosign sign --key - ${IMAGE_NAME}:${IMAGE_TAG}
-                    echo '${COSIGN_KEY}' | cosign sign --key - ${IMAGE_NAME}:latest
+                    cosign sign --key /home/jenkinsagentuser/cosign.key ${IMAGE_NAME}:${IMAGE_TAG}
+                    cosign sign --key /home/jenkinsagentuser/cosign.key ${IMAGE_NAME}:latest
                     """  
 
                 }
