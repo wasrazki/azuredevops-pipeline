@@ -161,7 +161,10 @@ pipeline{
                         docker_image.push('latest')
                     }
 
-                    sh" cosign sign --key ${COSIGN_KEY} ${IMAGE_NAME}:${IMAGE_TAG} "
+                    sh"""
+                    echo '${COSIGN_KEY}' | cosign sign --key - ${IMAGE_NAME}:${IMAGE_TAG}
+                    echo '${COSIGN_KEY}' | cosign sign --key - ${IMAGE_NAME}:latest
+                    """  
 
                 }
                         
