@@ -12,10 +12,11 @@ pipeline{
         IMAGE_TAG= "${RELEASE}-${BUILD_NUMBER}"
         SONARQUBE_ACCESS_TOKEN = credentials("vault-sonarqube-access-token")
         SONARQUBE_URL = credentials("vault-sonarqube-url")
+        COSIGN_KEY = credentials("vault-cosign-key")
         SBOM_REPORT_CLOUD_UPLOADING=credentials("SBOM-REPORT-CLOUD-UPLOADING")
         GRYPE_REPORT_CLOUD_UPLOADING= credentials("GRYPE-REPORT-CLOUD-UPLOADING")
         TRIVY_REPORT_CLOUD_UPLOADING= credentials("TRIVY-REPORT-CLOUD-UPLOADING")
-        COSIGN.KEY = credentials("vault-cosign-key")
+        
 
     }
     stages{
@@ -160,7 +161,7 @@ pipeline{
                         docker_image.push('latest')
                     }
 
-                    sh" cosign sign --key ${COSIGN.KEY} ${IMAGE_NAME}:${IMAGE_TAG} "
+                    sh" cosign sign --key ${COSIGN_KEY} ${IMAGE_NAME}:${IMAGE_TAG} "
 
                 }
                         
