@@ -122,7 +122,7 @@ pipeline{
         stage ("Dockerfile Scanning with checkov"){
             steps{
                 script{
-                    sh " chechov -f Dockerfile > dockerfile-scan"
+                    sh " checkov -f Dockerfile > dockerfile-scan"
                     def report = readFile("dockerfile-scan")
                     def htmlreport = """
                     <html> 
