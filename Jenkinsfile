@@ -4,6 +4,12 @@ pipeline{
     }
 
     environment{
+        APP_NAME_FRONT="yallafrontpipeline"
+        RELEASE="1.0.0"
+        DOCKER_USER=""
+        DOCKER_PASS= " "
+        IMAGE_NAME="${DOCKER_USER}"+"/"+"${APP_NAME}"
+        IMAGE_TAG= "${RELEASE}-${BUILD_NUMBER}"
         SONARQUBE_ACCESS_TOKEN = credentials("vault-sonarqube-access-token")
         SONARQUBE_URL = credentials("vault-sonarqube-url")
         SBOM_REPORT_CLOUD_UPLOADING=credentials("SBOM-REPORT-CLOUD-UPLOADING")
@@ -113,11 +119,11 @@ pipeline{
             }
         }
 
-        stage ("Trivy Scanning and Report Uploading to the cloud"){
+        stage ("Dockerfile Scanning with checkov"){
             steps{
-                sh 'trivy filesystem . > trivy-scan'
                 script{
-                    def report = readFile("trivy-scan")
+                    sh " chechov -f Dockerfile > dockerfile-scan"
+                    def report = readFile("dockerfile-scan")
                     def htmlreport = """
                     <html> 
                     <head> <title> Trivy Scanning Report </title> </head> 
@@ -127,17 +133,15 @@ pipeline{
                     </body>
                     </html>
                     """
-                    writeFile file: 'target/trivy-scanning-report.html', text: htmlreport
-                    sh "azcopy copy 'target/trivy-scanning-report.html'   '${TRIVY_REPORT_CLOUD_UPLOADING}'  "
+                    writeFile file: 'target/dockerfile-scanning-report.html', text: htmlreport
+                    sh "azcopy copy 'target/dockerfile-scanning-report.html'   '${TRIVY_REPORT_CLOUD_UPLOADING}'  "
                 }
-
-                archiveArtifacts artifacts: 'target/trivy-scanning-report.html', allowEmptyArchive: true
+                archiveArtifacts artifacts: 'target/dockerfile-scanning-report.html', allowEmptyArchive: true
 
             }
         }
 
        
-
 
 
 
