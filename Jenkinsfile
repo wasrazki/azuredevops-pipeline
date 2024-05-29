@@ -7,7 +7,7 @@ pipeline{
         APP_NAME_FRONT="yallafrontpipeline"
         RELEASE="1.0.0"
         DOCKER_USER=credentials("vault-docker-usernamer")
-        DOCKER_PASS= credentials("vault-docker-access")
+        DOCKER_PASS= "vault-docker-access"
         IMAGE_NAME="${DOCKER_USER}"+"/"+"${APP_NAME}"
         IMAGE_TAG= "${RELEASE}-${BUILD_NUMBER}"
         SONARQUBE_ACCESS_TOKEN = credentials("vault-sonarqube-access-token")
