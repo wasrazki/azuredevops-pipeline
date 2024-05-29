@@ -122,13 +122,17 @@ pipeline{
         stage ("Dockerfile Scanning with checkov"){
             steps{
                 script{
-                    sh " checkov -f Dockerfile > dockerfile-scan"
+                    sh """
+                    cd ~/workspace/front-pipeline
+                    checkov -f Dockerfile > dockerfile-scan
+
+                    """
                     def report = readFile("dockerfile-scan")
                     def htmlreport = """
                     <html> 
-                    <head> <title> Trivy Scanning Report </title> </head> 
+                    <head> <title> Dokcerfile Scanning Report </title> </head> 
                     <body>
-                        <h1> Trivy Scanning Report: Build ${BUILD_NUMBER}   </h1> 
+                        <h1> Dckerfile Scanning Report: Build ${BUILD_NUMBER}   </h1> 
                         <pre> ${report}</pre>
                     </body>
                     </html>
