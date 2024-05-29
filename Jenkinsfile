@@ -6,8 +6,8 @@ pipeline{
     environment{
         APP_NAME_FRONT="yallafrontpipeline"
         RELEASE="1.0.0"
-        DOCKER_USER=""
-        DOCKER_PASS= " "
+        DOCKER_USER=credentials("vault-docker-usernamer")
+        DOCKER_PASS= credentials("vault-docker-access-token")
         IMAGE_NAME="${DOCKER_USER}"+"/"+"${APP_NAME}"
         IMAGE_TAG= "${RELEASE}-${BUILD_NUMBER}"
         SONARQUBE_ACCESS_TOKEN = credentials("vault-sonarqube-access-token")
@@ -143,6 +143,28 @@ pipeline{
 
             }
         }
+
+        stage (" Docker Build and Push"){
+            steps{
+                script{
+
+                    docker.withRegistry('', DOCKER_PASS){
+                    docker_image = docker.build "${IMAGE_NAME}"
+                    }
+
+                    docker.withRegistry('', DOCKER_PASS){
+                        docker_image.push("${IMAGE_TAG}")
+                        docker_image.push('latest')
+                    }
+
+                }
+                        
+                        
+            }
+        }
+
+
+
 
        
 
