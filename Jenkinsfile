@@ -123,8 +123,7 @@ pipeline{
             steps{
                 script{
                     sh """
-                    cd ~/workspace/front-pipeline
-                    checkov -f /home/jenkinsagentuser/workspace/front-pipeline/Dockerfile > dockerfile-scan
+                    /home/jenkinsagentuser/.local/bin/checkov -f Dockerfile > dockerfile-scan
 
                     """
                     def report = readFile("dockerfile-scan")
