@@ -180,7 +180,7 @@ pipeline{
 
                     
                     """
-                }COSIGN_PRIVATE_KEY 
+                }
             }
         }
 
