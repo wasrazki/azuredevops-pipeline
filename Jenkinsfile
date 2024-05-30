@@ -17,6 +17,7 @@ pipeline{
         SBOM_REPORT_CLOUD_UPLOADING=credentials("SBOM-REPORT-CLOUD-UPLOADING")
         GRYPE_REPORT_CLOUD_UPLOADING= credentials("GRYPE-REPORT-CLOUD-UPLOADING")
         TRIVY_REPORT_CLOUD_UPLOADING= credentials("TRIVY-REPORT-CLOUD-UPLOADING")
+        CHECKOV_REPORT_CLOUD_UPLOADING = credentials("CHECKOV-REPORT-CLOUD-UPLOADING")
         
 
     }
@@ -140,7 +141,7 @@ pipeline{
                     </html>
                     """
                     writeFile file: 'target/dockerfile-scanning-report.html', text: htmlreport
-                    sh "azcopy copy 'target/dockerfile-scanning-report.html'   '${TRIVY_REPORT_CLOUD_UPLOADING}'  "
+                    sh "azcopy copy 'target/dockerfile-scanning-report.html'   '${CHECKOV_REPORT_CLOUD_UPLOADING}'  "
                 }
                 archiveArtifacts artifacts: 'target/dockerfile-scanning-report.html', allowEmptyArchive: true
 
@@ -171,7 +172,7 @@ pipeline{
                         
             }
 
-            stage("Signing the container image with COSIGN"){
+          /* stage("Signing the container image with COSIGN"){
                 steps{
                     script{
                         sh"""
@@ -183,6 +184,34 @@ pipeline{
                     }
                 }
             }
+
+*/         
+
+        stage ("Image Scanning with TRIVY and Report Uploading to the Cloud") 
+        {
+            steps{
+                script{
+                    sh "trivy image --no-progress --exit-code 0 --severity HIGH,CRITICAL ${IMAGE_NAME}:${IMAGE_TAG} > trivy-image-scan"
+
+                    def report = readFile("trivy-image-scan")
+                    def htmlreport = """
+                    <html> 
+                    <head> <title> Trivy Image Scanning Report </title> </head> 
+                    <body>
+                        <h1> Trivy Scanning Report:  Build ${BUILD_NUMBER} </h1> 
+                        <pre> ${report}</pre>
+                    </body>
+                    </html>
+                    """
+                    writeFile file: 'target/trivy-image-scanning-report.html', text: htmlreport
+                    sh "azcopy copy 'target/trivy-image-scanning-report.html'  '${TRIVY_REPORT_CLOUD_UPLOADING}' "
+
+                }
+            }
+        }
+
+
+
         }
 
 
