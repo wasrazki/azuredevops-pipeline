@@ -198,7 +198,7 @@ pipeline{
                     <html> 
                     <head> <title> Trivy Image Scanning Report </title> </head> 
                     <body>
-                        <h1> Trivy Scanning Report:  Build ${BUILD_NUMBER} </h1> 
+                        <h1> Trivy DOCKER IMAGE Scanning Report:  Build ${BUILD_NUMBER} </h1> 
                         <pre> ${report}</pre>
                     </body>
                     </html>
