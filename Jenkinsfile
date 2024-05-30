@@ -12,7 +12,8 @@ pipeline{
         IMAGE_TAG= "${RELEASE}-${BUILD_NUMBER}"
         SONARQUBE_ACCESS_TOKEN = credentials("vault-sonarqube-access-token")
         SONARQUBE_URL = credentials("vault-sonarqube-url")
-        COSIGN_PRIVATE_KEY = credentials("vault-cosign-key")
+        try_this = credentials("try-this")
+        // COSIGN_PRIVATE_KEY = credentials("vault-cosign-key")
         SBOM_REPORT_CLOUD_UPLOADING=credentials("SBOM-REPORT-CLOUD-UPLOADING")
         GRYPE_REPORT_CLOUD_UPLOADING= credentials("GRYPE-REPORT-CLOUD-UPLOADING")
         TRIVY_REPORT_CLOUD_UPLOADING= credentials("TRIVY-REPORT-CLOUD-UPLOADING")
@@ -174,12 +175,12 @@ pipeline{
                 script{
                     sh"""
                     cosign version
-                    cosign sign --key $COSIGN_PRIVATE_KEY ${IMAGE_NAME}:${IMAGE_TAG}
-                    cosign sign --key $COSIGN_PRIVATE_KEY ${IMAGE_NAME}:latest
+                    cosign sign --key $try_this ${IMAGE_NAME}:${IMAGE_TAG}
+                    cosign sign --key $try_this ${IMAGE_NAME}:latest
 
                     
                     """
-                }
+                }COSIGN_PRIVATE_KEY 
             }
         }
 
