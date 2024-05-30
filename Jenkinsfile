@@ -147,7 +147,7 @@ pipeline{
             }
         }
 
-        stage ("Docker Build, Sign and Push with Docker and COSIGN"){
+        stage ("Docker Build and Push with Docker"){
             steps{
                 script{
 
@@ -162,13 +162,6 @@ pipeline{
                         docker_image.push('latest')
                     }
 
-                     sh"""
-                    cosign version
-                    cosign sign --key /home/jenkinsagentuser/cosign.key ${IMAGE_NAME}:${IMAGE_TAG}
-                    cosign sign --key /home/jenkinsagentuser/cosign.key ${IMAGE_NAME}:latest
-
-                    
-                    """
                 }
 
                     
@@ -176,6 +169,19 @@ pipeline{
                 }
                         
                         
+            }
+
+            stage("Signing the container image with COSIGN"){
+                steps{
+                    script{
+                        sh"""
+                        cosign version
+                        cosign sign --yes --key /home/jenkinsagentuser/cosign.key ${IMAGE_NAME}:${IMAGE_TAG}
+                        cosign sign --yes --key /home/jenkinsagentuser/cosign.key ${IMAGE_NAME}:latest
+
+                        """
+                    }
+                }
             }
         }
 
