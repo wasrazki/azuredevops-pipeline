@@ -162,19 +162,7 @@ pipeline{
                         docker_image.push('latest')
                     }
 
-                    
-
-                }
-                        
-                        
-            }
-        }
-
-        stage("Signing the Container image with COSIGN") {
-            steps{
-                
-                script{
-                    sh"""
+                     sh"""
                     cosign version
                     cosign sign --key $try_this ${IMAGE_NAME}:${IMAGE_TAG}
                     cosign sign --key $try_this ${IMAGE_NAME}:latest
@@ -182,10 +170,15 @@ pipeline{
                     
                     """
                 }
+
+                    
+
+                }
+                        
+                        
             }
         }
 
-    }
 
     
 }
