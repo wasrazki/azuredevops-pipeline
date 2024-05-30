@@ -172,6 +172,7 @@ pipeline{
 
         stage("Signing the Container image with COSIGN") {
             steps{
+                
                 script{
                     sh"""
                     cosign version
