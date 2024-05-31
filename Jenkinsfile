@@ -172,7 +172,7 @@ pipeline{
                         
             }
 
-          /* stage("Signing the container image with COSIGN"){
+          stage("Signing the container image with COSIGN"){
                 steps{
                     script{
                         sh"""
@@ -185,7 +185,7 @@ pipeline{
                 }
             }
 
-*/         
+        
 
         stage ("Image Scanning with TRIVY and Report Uploading to the Cloud") 
         {
