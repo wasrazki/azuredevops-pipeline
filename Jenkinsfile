@@ -207,6 +207,8 @@ pipeline{
                     sh "azcopy copy 'target/trivy-image-scanning-report.html'  '${TRIVY_REPORT_CLOUD_UPLOADING}' "
 
                 }
+                archiveArtifacts artifacts: 'target/trivy-image-scanning-report.html', allowEmptyArchive: true
+
             }
         }
 
