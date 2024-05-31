@@ -185,7 +185,7 @@ pipeline{
             }
 
 
-            stage ("COntainer Image verifying"){
+            stage ("Container Image verifying"){
                 steps{
                     script{
                         sh """
