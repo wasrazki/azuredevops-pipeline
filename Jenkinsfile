@@ -176,10 +176,21 @@ pipeline{
                 steps{
                     script{
                         sh"""
-                        cosign version
                         cosign sign --yes --key /home/jenkinsagentuser/cosign.key ${IMAGE_NAME}:${IMAGE_TAG}
                         cosign sign --yes --key /home/jenkinsagentuser/cosign.key ${IMAGE_NAME}:latest
 
+                        """
+                    }
+                }
+            }
+
+
+            stage ("COntainer Image verifying"){
+                steps{
+                    script{
+                        sh """
+                        cosign verify --key /home/jenkinsagentuser/cosign.pub ${IMAGE_NAME}:${IMAGE_TAG} 
+                        cosign verify --key /home/jenkinsagentuser/cosign.pub ${IMAGE_NAME}:latest 
                         """
                     }
                 }
