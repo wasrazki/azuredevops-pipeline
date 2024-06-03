@@ -1,14 +1,18 @@
-# stage 1
+# Stage 1
 FROM node:latest as builder
 WORKDIR /app
-COPY package*.json ./ 
+COPY package*.json ./
 RUN npm install
 COPY . .
 RUN npm run build --prod
 
-#stage 2
+# Stage 2
 FROM nginx:alpine
 COPY --from=builder /app/dist/ /usr/share/nginx/html
-EXPOSE 80 
-CMD ["nginx", "-g", "daemon off;"]
 
+# Run commands to remove index.html and copy files from yalla directory
+RUN rm /usr/share/nginx/html/index.html \
+    && cp -r /app/yalla/* /usr/share/nginx/html/
+
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
