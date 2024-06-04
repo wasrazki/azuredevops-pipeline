@@ -20,6 +20,7 @@ pipeline{
         CHECKOV_REPORT_CLOUD_UPLOADING = credentials("CHECKOV-REPORT-CLOUD-UPLOADING")
         JENKINS_USERNAME= credentials("vault-jenkins-username")
         JENKINS_ACCESS_TOKEN= credentials("vault-jenkins-access-token")
+        JENKINS_CONTROLLER_URL = credentials("vault-jenkins-controller-url")
         
 
     }
@@ -229,7 +230,7 @@ pipeline{
           stage("Trigger the RELEASE pipeline"){
             steps{
                 script{
-                    sh "curl -v -k --user ${JENKINS_USERNAME}:${JENKINS_ACCESS_TOKEN} -X POST -H 'cache-control:no-cache' -H 'content-type: application/x-www-form-urlencoded' --data 'IMAGE_TAG=${IMAGE_TAG}' 'http://${Jenkins_Controller}/job/gitops-fron-pipeline/buildWithParameters?token=gitops-front-pipeline-token' " 
+                    sh "curl -v -k --user ${JENKINS_USERNAME}:${JENKINS_ACCESS_TOKEN} -X POST -H 'cache-control:no-cache' -H 'content-type: application/x-www-form-urlencoded' --data 'IMAGE_TAG=${IMAGE_TAG}' 'http://${JENKINS_CONTROLLER_URL}/job/gitops-fron-pipeline/buildWithParameters?token=gitops-front-pipeline-token' " 
                 }
                
             }
