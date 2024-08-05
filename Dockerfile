@@ -10,7 +10,7 @@ RUN npm run build --prod
 FROM nginx:alpine
 COPY --from=builder /app/dist/ /usr/share/nginx/html
 
-# Run commands to remove index.html and copy files from yalla directory
+#  remove index.html and copy files from yalla directory
 RUN rm /usr/share/nginx/html/index.html \
     && cp -r /usr/share/nginx/html/yalla/* /usr/share/nginx/html/
 

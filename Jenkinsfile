@@ -13,7 +13,7 @@ pipeline{
         SONARQUBE_ACCESS_TOKEN = credentials("vault-sonarqube-access-token")
         SONARQUBE_URL = credentials("vault-sonarqube-url")
         try_this = credentials("try-this")
-        // COSIGN_PRIVATE_KEY = credentials("vault-cosign-key")
+        COSIGN_PRIVATE_KEY = credentials("vault-cosign-key")
         SBOM_REPORT_CLOUD_UPLOADING=credentials("SBOM-REPORT-CLOUD-UPLOADING")
         GRYPE_REPORT_CLOUD_UPLOADING= credentials("GRYPE-REPORT-CLOUD-UPLOADING")
         TRIVY_REPORT_CLOUD_UPLOADING= credentials("TRIVY-REPORT-CLOUD-UPLOADING")
